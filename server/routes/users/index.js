@@ -16,11 +16,14 @@ router.post('/register', async (req, res) => {
     const hashPassword = await bcrypt.hash(req.body.password, salt);
 
     const user = new User({
-        name: req.body.name,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        male: req.body.male,
         email: req.body.email,
         password: hashPassword,
         phone: req.body.phone,
         country: req.body.country,
+        city: req.body.city,
     });
 
     try {
@@ -28,10 +31,13 @@ router.post('/register', async (req, res) => {
         res.send({
             user: {
                 id: user._id,
-                name: user.name,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                male: user.male,
                 email: user.email,
                 phone: user.phone,
                 country: user.country,
+                city: user.city,
             }
         });
     } catch (err) {
@@ -55,10 +61,13 @@ router.post('/login', async (req, res) => {
     res.header('auth-token', token).send({
         user: {
             id: user._id,
-            name: user.name,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            male: user.male,
             email: user.email,
             phone: user.phone,
             country: user.country,
+            city: user.city,
         }
     });
 });
