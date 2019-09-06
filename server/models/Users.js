@@ -25,10 +25,6 @@ const usersSchema = new mongoose.Schema({
     country: {
         type: String,
         require: false
-    },
-    date: {
-        type: Date,
-        default: Date.now
     }
 });
 
